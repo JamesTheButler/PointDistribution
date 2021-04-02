@@ -40,7 +40,6 @@ export default class PointDistribution extends Component {
             this.onSettingsChanged(newSettings)
           }
         />
-        {console.log("this. onsettings changed " + this.onSettingsChanged)}
       </div>
     );
   }

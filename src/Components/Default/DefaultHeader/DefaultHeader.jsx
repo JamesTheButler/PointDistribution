@@ -8,7 +8,7 @@ export default class DefaultHeader extends Component {
       <header className="default-header">
         <nav className="navbar">
           <div className="container-fluid">
-            <a className="button" id="to-portfolio">
+            <a className="button" id="to-portfolio" href="www.tom.ille-web.de">
               To Portfolio
             </a>
             {

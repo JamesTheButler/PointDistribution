@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CustomSlider from "../Default/CustomSlider/CustomSlider";
+//import CustomSlider from "../Default/CustomSlider/CustomSlider";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 
@@ -53,7 +53,9 @@ export default class PointDistributionMenu extends Component {
               Map Size
             </Typography>
             <Slider
+              defaultValue={1}
               min={0}
+              step={1}
               max={2}
               marks={sizeMarks}
               className="col-8"
@@ -68,6 +70,7 @@ export default class PointDistributionMenu extends Component {
             </Typography>
             <Slider
               min={0}
+              step={1}
               max={2}
               marks={algorithmMarks}
               className="col-8"
