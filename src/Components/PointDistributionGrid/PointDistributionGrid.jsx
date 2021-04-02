@@ -12,12 +12,7 @@ export default class PointDistributionGrid extends Component {
     return (
       <div className="col-8 main-alg-element">
         <div className="point-distribution-grid">
-          {"points: " +
-            this.props.pointNumber +
-            ", map: " +
-            this.props.mapSize +
-            ", algo: " +
-            this.props.algorithm}
+          <canvas id="canvas" />
         </div>
       </div>
     );
