@@ -13,7 +13,7 @@ export default function App() {
         title="Segmentented Random Points"
         subtitle="An algorithm for evenly spaced out, random points."
       />
-      <PointDistribution />
+      <PointDistribution className="pb-3" />
       <div className="container-fluid"></div>
     </div>
   );

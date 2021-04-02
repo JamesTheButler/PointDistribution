@@ -44,7 +44,7 @@ export default class PointDistributionMenu extends Component {
     ];
 
     return (
-      <div className="main-alg-element col-4">
+      <div className="main-alg-element col-3">
         <div className="alg-menu point-distribution-menu">
           <h3>Settings</h3>
           <hr />

@@ -1,13 +1,9 @@
 .default-header {
   background-color: #282c34;
-  height: 5%;
   display: flex;
   flex-direction: row;
-  align-items: left;
+  align-items: start;
   justify-content: left;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.default-header a.button {
 }

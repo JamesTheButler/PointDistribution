@@ -8,9 +8,13 @@ export default class PointDistributionGrid extends Component {
     this.state = {};
   }
 
+  componentDidUpdate() {
+    let grid = this.initializeGrid(this.props.mapSize);
+  }
+
   render() {
     return (
-      <div className="col-8 main-alg-element">
+      <div className="col-9 main-alg-element">
         <div className="point-distribution-grid">
           <canvas id="canvas" />
         </div>
