@@ -13,13 +13,22 @@ export default class PointDistribution extends Component {
   }
 
   onSettingsChanged(newSettings) {
-    if (newSettings.pointNumber != null)
+    if (
+      newSettings.pointNumber != null &&
+      newSettings.pointNumber != this.state.pointNumber
+    )
       this.setState({ pointNumber: newSettings.pointNumber });
 
-    if (newSettings.mapSize != null)
+    if (
+      newSettings.mapSize != null &&
+      newSettings.mapSize != this.state.mapSize
+    )
       this.setState({ mapSize: newSettings.mapSize });
 
-    if (newSettings.algorithm != null)
+    if (
+      newSettings.algorithm != null &&
+      newSettings.algorithm != this.state.algorithm
+    )
       this.setState({ algorithm: newSettings.algorithm });
   }
 

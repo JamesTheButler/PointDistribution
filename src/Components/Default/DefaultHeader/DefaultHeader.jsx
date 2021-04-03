@@ -11,11 +11,6 @@ export default class DefaultHeader extends Component {
             <a className="button" id="to-portfolio" href="www.tom.ille-web.de">
               To Portfolio
             </a>
-            {
-              //<a className="button" id="to-algorithm-gallery">
-              //To Gallery
-              //</div></a>
-            }
           </div>
         </nav>
       </header>

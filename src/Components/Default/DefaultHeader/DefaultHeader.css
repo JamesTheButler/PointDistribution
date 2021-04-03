@@ -1,9 +1,29 @@
 .default-header {
-  background-color: #282c34;
+  background-color: #2f528f;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: left;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+a.button {
+  padding: 0 15px;
+  text-align: center;
+  color: white;
+  border-right: 2px #2f528f solid;
+}
+a.button:hover {
+  color: white;
+  text-decoration: none;
+  border-right-color: white;
+}
+
+nav.navbar {
+  padding: 0;
+}
+
+nav.navbar .container-fluid {
+  padding: 0;
 }

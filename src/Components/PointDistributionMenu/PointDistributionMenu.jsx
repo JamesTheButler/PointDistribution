@@ -24,7 +24,7 @@ export default class PointDistributionMenu extends Component {
       },
       {
         value: 2,
-        label: "Poisson-disk",
+        label: "Poisson-Disc",
       },
     ];
 
