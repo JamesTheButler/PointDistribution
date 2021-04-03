@@ -10,106 +10,71 @@ const POINT_DENSITY = 0.05;
 export default class PointDistributionGrid extends Component {
   constructor() {
     super();
-    this.state = {
-      randomPointProp: 0.1,
-      /*grid: [],
-      radius: 5,
-      sizeRatio: 1,
-      gridWidth: 100,
-      gridHeight: 100,*/
-    };
+    this.state = {};
   }
 
-  setGridInfo() {
-    // TODO: make pointSize, lineWidth dependant on sizeRatio
-    /* const settings = [
-      {
-        sizeRatio: 0.05,
-      },
-      {
-        sizeRatio: 0.15,
-      },
-      {
-        sizeRatio: 0.45,
-      },
-    ];*/
-    //const mapSizeModifiers = [0.05, 0.25, 0.5];
-    //this.setCanvasSize();
-    /*const mapSize = this.props.mapSize;
-    this.setState({ sizeRatio: mapSizeModifiers[mapSize] });
-
-    const canvasWidth = canvas.clientWidth;
-    const canvasHeight = canvas.clientHeight;
-    //const aspect = canvasWidth / canvasHeight;
-    this.setState({
-      gridWidth: Math.floor(canvasWidth * this.state.sizeRatio),
-    });
-    this.setState({
-      gridHeight: Math.floor(canvasHeight * this.state.sizeRatio),
-    });*/
-  }
-
-  /*generateRandomPoints(gridWidth, gridHeight) {
-    const grid = [];
-    const points = [];
-    let pointCount = 0;
-    let totalPointCount = 0;
-    // set points
-    for (let row = 0; row < gridHeight; row++) {
-      const currRow = [];
-      for (let col = 0; col < gridWidth; col++) {
-        if (this.getRandomArbitrary(0, 1) < this.state.randomPointProp) {
-          currRow.push(true);
-          points.push([row, col]);
-          pointCount++;
-        } else {
-          currRow.push(false);
-        }
-        totalPointCount++;
-      }
-      grid.push(currRow);
+  getSizeRatio(mapSize) {
+    switch (mapSize) {
+      case 0:
+      default:
+        return 0.1;
+      case 1:
+        return 0.25;
+      case 2:
+        return 0.45;
     }
-    return points;
-  }*/
+  }
 
   generatePoints(algorithmId, gridWidth, gridHeight) {
+    const pointCount = Math.floor(gridWidth * gridHeight * POINT_DENSITY);
     switch (algorithmId) {
       case 1:
         return generateEvenlySpacedRandomPoints(
           gridWidth,
           gridHeight,
-          Math.floor(gridWidth * gridHeight * POINT_DENSITY)
+          pointCount
         );
-      //case 2: return generatePoissonDiskPoints(  gridWidth, gridHeight, Math.floor(gridWidth * gridHeight * POINT_PROPABILITY);
+      //case 2: return generatePoissonDiscPoints(  gridWidth, gridHeight, pointCount);
       case 0:
       default:
-        return generateRandomPoints(
-          gridWidth,
-          gridHeight,
-          gridWidth * gridHeight * POINT_DENSITY
-        );
+        return generateRandomPoints(gridWidth, gridHeight, pointCount);
     }
   }
 
-  drawPoints(pointList, canvas, gridWidth, gridHeight, pointSize) {
+  drawPoints(pointList, canvas, pointSize, lineWidth) {
+    const sizeModifier = this.getSizeRatio(this.props.mapSize);
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#2f528f";
-    ctx.lineWidth = 1;
-    ctx.clearRect(0, 0, gridWidth * 4, gridHeight * 4);
+    ctx.lineWidth = lineWidth;
+    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
     for (let i = 0; i < pointList.length; i++) {
-      const x = pointList[i][1] / 0.25;
-      const y = pointList[i][0] / 0.25;
+      const x = pointList[i][1] / sizeModifier;
+      const y = pointList[i][0] / sizeModifier;
       if (
         x - pointSize > 0 &&
-        x + pointSize < gridWidth * 4 &&
+        x + pointSize < canvas.clientWidth &&
         y - pointSize > 0 &&
-        y + pointSize < gridHeight * 4
+        y + pointSize < canvas.clientHeight
       ) {
         ctx.beginPath();
         ctx.arc(x, y, pointSize, 0, Math.PI * 2);
         ctx.stroke();
       }
     }
+  }
+
+  componentDidUpdate() {
+    const canvas = document.getElementById("canvas");
+    const sizeModifier = this.getSizeRatio(this.props.mapSize);
+    const gridWidth = Math.floor(canvas.clientWidth * sizeModifier);
+    const gridHeight = Math.floor(canvas.clientHeight * sizeModifier);
+
+    const points = this.generatePoints(
+      this.props.algorithm,
+      gridWidth,
+      gridHeight
+    );
+    this.drawPoints(points, canvas, 0.75 / sizeModifier, 0.5 / sizeModifier);
   }
 
   updateCanvasSize() {
@@ -134,19 +99,6 @@ export default class PointDistributionGrid extends Component {
     window.removeEventListener("resize", () => this.onWindowResize());
   }
 
-  componentDidUpdate() {
-    const canvas = document.getElementById("canvas");
-    const gridWidth = Math.floor(canvas.clientWidth * 0.25);
-    const gridHeight = Math.floor(canvas.clientHeight * 0.25);
-
-    const points = this.generatePoints(
-      this.props.algorithm,
-      gridWidth,
-      gridHeight
-    );
-    this.drawPoints(points, canvas, gridWidth, gridHeight, 3);
-  }
-
   render() {
     return (
       <div className="col-9 main-alg-element">
@@ -159,6 +111,6 @@ export default class PointDistributionGrid extends Component {
 }
 
 PointDistributionGrid.defaultProps = {
-  mapSize: 2,
-  algorithm: "default",
+  mapSize: 0,
+  algorithm: 0,
 };

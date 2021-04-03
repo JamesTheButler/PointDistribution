@@ -5,4 +5,5 @@
   display: flex;
   flex: 1 0.5;
   cursor: crosshair;
+  border: 1px solid;
 }

@@ -26,7 +26,6 @@ const generatePoints = (width, height, pointCount) => {
   var rects = pointCount;
   console.log("length " + rects.length);
   for (i = 0; i < pointCount; i++) {}
-  //drawPoints(points_x, points_y, pointCount);
 };
 
 const findBestDivider = (number, aspectRatio) => {
