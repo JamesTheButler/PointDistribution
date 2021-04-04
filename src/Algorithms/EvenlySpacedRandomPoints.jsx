@@ -9,10 +9,10 @@ export const generateEvenlySpacedRandomPoints = (
 
   const rects = divideRect(gridWidth, gridHeight, pointCount);
   for (let i = 0; i < pointCount; i++) {
-    points.push([
+    /*points.push([
       getRandom(rects[i][0], rects[i][0] + rects[i][2]),
       getRandom(rects[i][1], rects[i][1] + rects[i][3]),
-    ]);
+    ]);*/
   }
 
   return points;
@@ -25,7 +25,10 @@ const generatePoints = (width, height, pointCount) => {
   var points_y = new Array();
   var rects = pointCount;
   console.log("length " + rects.length);
-  for (i = 0; i < pointCount; i++) {}
+  for (i = 0; i < pointCount; i++) {
+    const x = Math.floor(i, width);
+    const y = i % height;
+  }
 };
 
 const findBestDivider = (number, aspectRatio) => {

@@ -6,10 +6,48 @@ import Typography from "@material-ui/core/Typography";
 import "./PointDistributionMenu.css";
 
 export default class PointDistributionMenu extends Component {
+  state = {
+    algDesc: "",
+    algTitle: "",
+  };
+
   onSettingsChanged(newSettings) {
     if (this.props.onSettingsChanged != null) {
       this.props.onSettingsChanged(newSettings);
     }
+  }
+
+  updateAlgorithmDescription(algoId) {
+    const algorightmInfo = [
+      {
+        title: "Fully Random Scatter",
+        description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
+          " printer took a galley of type and scrambled it to make a type specimen book.",
+      },
+      {
+        title: "My Custom Algorithm",
+        description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
+          " printer took a galley of type and scrambled it to make a type specimen book.",
+      },
+      {
+        title: "Poisson-Disc",
+        description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
+          " printer took a galley of type and scrambled it to make a type specimen book.",
+      },
+    ];
+
+    if (algoId >= algorightmInfo.length) return;
+
+    this.setState({
+      algTitle: algorightmInfo[algoId].title,
+      algDesc: algorightmInfo[algoId].description,
+    });
   }
 
   render() {
@@ -47,13 +85,13 @@ export default class PointDistributionMenu extends Component {
       <div className="main-alg-element col-3">
         <div className="alg-menu point-distribution-menu">
           <h3>Settings</h3>
-          <hr />
-          <div className="col-12 pb-2">
+          <hr class="styled-hr" />
+          <div className="col-12 settings-slider">
             <Typography id="non-linear-slider" gutterBottom>
               Map Size
             </Typography>
             <Slider
-              defaultValue={1}
+              defaultValue={0}
               min={0}
               step={1}
               max={2}
@@ -64,7 +102,7 @@ export default class PointDistributionMenu extends Component {
               }
             />
           </div>
-          <div className="col-12">
+          <div className="col-12 settings-slider">
             <Typography id="non-linear-slider" gutterBottom>
               Algorithm
             </Typography>
@@ -74,11 +112,19 @@ export default class PointDistributionMenu extends Component {
               max={2}
               marks={algorithmMarks}
               className="col-8"
-              onChange={(e, value) =>
-                this.onSettingsChanged({ algorithm: value })
-              }
+              onChange={(e, value) => {
+                this.onSettingsChanged({ algorithm: value });
+                this.updateAlgorithmDescription(value);
+              }}
             />
           </div>
+          <hr class="styled-hr" />
+          <Typography id="non-linear-slider" variant="h6" gutterBottom>
+            {this.state.algTitle}
+          </Typography>
+          <Typography id="non-linear-slider" variant="body1" gutterBottom>
+            {this.state.algDesc}
+          </Typography>
         </div>
       </div>
     );

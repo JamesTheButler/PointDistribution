@@ -9,10 +9,7 @@ export default function App() {
   return (
     <div className="App">
       <DefaultHeader />
-      <DefaultAlgorithmTitle
-        title="Segmentented Random Points"
-        subtitle="An algorithm for evenly spaced out, random points."
-      />
+      <DefaultAlgorithmTitle title="Algorithms for scattering 2D Points" />
       <PointDistribution className="pb-3" />
       <div className="container-fluid"></div>
     </div>
