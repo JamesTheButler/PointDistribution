@@ -8,7 +8,7 @@ export default class DefaultAlgorithmTitle extends Component {
     const { title, subtitle } = this.props;
     return (
       <div className="default-algorithm-title col-12 p-3">
-        <Typography id="non-linear-slider" variant="h2" gutterBottom>
+        <Typography id="non-linear-slider" variant="h3" gutterBottom>
           {title}
         </Typography>
         <Typography id="non-linear-slider" variant="subtitle" gutterBottom>

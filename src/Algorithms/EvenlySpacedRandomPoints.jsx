@@ -5,72 +5,44 @@ export const generateEvenlySpacedRandomPoints = (
   gridHeight,
   pointCount
 ) => {
+  var i = 0;
   const points = [];
 
-  const rects = divideRect(gridWidth, gridHeight, pointCount);
-  for (let i = 0; i < pointCount; i++) {
-    /*points.push([
-      getRandom(rects[i][0], rects[i][0] + rects[i][2]),
-      getRandom(rects[i][1], rects[i][1] + rects[i][3]),
-    ]);*/
+  var bestDividers = findBestDivider(pointCount, gridHeight / gridWidth);
+  var x_count = bestDividers[0];
+  var y_count = bestDividers[1];
+  var rectSize = [gridWidth / x_count, gridHeight / y_count];
+
+  for (let x = 0; x < x_count; x++) {
+    for (let y = 0; y < y_count; y++) {
+      points.push([
+        getRandom(y * rectSize[1], (y + 1) * rectSize[1]),
+        getRandom(x * rectSize[0], (x + 1) * rectSize[0]),
+      ]);
+    }
   }
 
+  console.log(pointCount + " points generated with even spacing");
   return points;
 };
 
-const generatePoints = (width, height, pointCount) => {
-  console.log("generatePoints");
-  var i = 0;
-  var points_x = new Array();
-  var points_y = new Array();
-  var rects = pointCount;
-  console.log("length " + rects.length);
-  for (i = 0; i < pointCount; i++) {
-    const x = Math.floor(i, width);
-    const y = i % height;
-  }
-};
-
-const findBestDivider = (number, aspectRatio) => {
+// finds the pair of dividers of a number whos ratio is closest to the given ratio
+const findBestDivider = (number, targetRatio) => {
   var i = 0;
   var result = null;
   for (i = 1; i <= number; i++) {
     if (number % i == 0) {
-      var div = number / i;
+      var divider = number / i;
       if (
         result == null ||
-        Math.abs(i / div - aspectRatio) <
-          Math.abs(result[0] / result[1] - aspectRatio)
+        Math.abs(i / divider - targetRatio) <
+          Math.abs(result[0] / result[1] - targetRatio)
       ) {
-        result = [i, div];
+        result = [i, divider];
       } else {
         break;
       }
     }
   }
   return result;
-};
-
-const divideRect = (size_x, size_y, count) => {
-  console.log("divideRect");
-
-  var x_count = findBestDivider(count);
-  var y_count = count / x_count;
-  var rect_size = [size_x / x_count, size_y / y_count];
-  var rects = new Array();
-  var i, j;
-
-  for (i = 0; i < x_count; i++) {
-    for (j = 0; j < y_count; j++) {
-      rects.push(
-        new Array(
-          i * rect_size[0],
-          j * rect_size[1],
-          rect_size[0],
-          rect_size[1]
-        )
-      );
-    }
-  }
-  return rects;
 };

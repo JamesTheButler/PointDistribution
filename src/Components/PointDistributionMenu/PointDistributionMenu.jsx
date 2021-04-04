@@ -7,8 +7,10 @@ import "./PointDistributionMenu.css";
 
 export default class PointDistributionMenu extends Component {
   state = {
-    algDesc: "",
-    algTitle: "",
+    algTitle: "Fully Random Scatter",
+    algDesc:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
+      " printer took a galley of type and scrambled it to make a type specimen book.",
   };
 
   onSettingsChanged(newSettings) {
@@ -22,22 +24,19 @@ export default class PointDistributionMenu extends Component {
       {
         title: "Fully Random Scatter",
         description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
-          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
           " printer took a galley of type and scrambled it to make a type specimen book.",
       },
       {
         title: "My Custom Algorithm",
         description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
-          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
           " printer took a galley of type and scrambled it to make a type specimen book.",
       },
       {
         title: "Poisson-Disc",
         description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
-          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown" +
           " printer took a galley of type and scrambled it to make a type specimen book.",
       },
     ];
@@ -84,10 +83,11 @@ export default class PointDistributionMenu extends Component {
     return (
       <div className="main-alg-element col-3">
         <div className="alg-menu point-distribution-menu">
-          <h3>Settings</h3>
-          <hr class="styled-hr" />
+          <Typography id="non-linear-slider" variant="h4" gutterBottom>
+            Settings
+          </Typography>
           <div className="col-12 settings-slider">
-            <Typography id="non-linear-slider" gutterBottom>
+            <Typography id="non-linear-slider" variant="h5" gutterBottom>
               Map Size
             </Typography>
             <Slider
@@ -103,7 +103,7 @@ export default class PointDistributionMenu extends Component {
             />
           </div>
           <div className="col-12 settings-slider">
-            <Typography id="non-linear-slider" gutterBottom>
+            <Typography id="non-linear-slider" variant="h5" gutterBottom>
               Algorithm
             </Typography>
             <Slider
@@ -118,7 +118,6 @@ export default class PointDistributionMenu extends Component {
               }}
             />
           </div>
-          <hr class="styled-hr" />
           <Typography id="non-linear-slider" variant="h6" gutterBottom>
             {this.state.algTitle}
           </Typography>

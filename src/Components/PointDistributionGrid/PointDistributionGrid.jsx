@@ -6,6 +6,8 @@ import { generateEvenlySpacedRandomPoints } from "../../Algorithms/EvenlySpacedR
 import "./PointDistributionGrid.css";
 
 const POINT_DENSITY = 0.05;
+const POINT_SIZE_MULTIPLIER = 0.75;
+const LINE_WIDTH_MULTIPLIER = 0.5;
 
 export default class PointDistributionGrid extends Component {
   constructor() {
@@ -48,13 +50,15 @@ export default class PointDistributionGrid extends Component {
     ctx.lineWidth = lineWidth;
     ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
     for (let i = 0; i < pointList.length; i++) {
+      // points to canvas space
       const x = pointList[i][1] / sizeModifier;
       const y = pointList[i][0] / sizeModifier;
+      // ignore points that are too close to the edges
       if (
-        x - pointSize > 0 &&
-        x + pointSize < canvas.clientWidth &&
-        y - pointSize > 0 &&
-        y + pointSize < canvas.clientHeight
+        x - pointSize - lineWidth > 0 &&
+        x + pointSize + lineWidth < canvas.clientWidth &&
+        y - pointSize - lineWidth > 0 &&
+        y + pointSize + lineWidth < canvas.clientHeight
       ) {
         ctx.beginPath();
         ctx.arc(x, y, pointSize, 0, Math.PI * 2);
@@ -74,7 +78,12 @@ export default class PointDistributionGrid extends Component {
       gridWidth,
       gridHeight
     );
-    this.drawPoints(points, canvas, 0.75 / sizeModifier, 0.5 / sizeModifier);
+    this.drawPoints(
+      points,
+      canvas,
+      POINT_SIZE_MULTIPLIER / sizeModifier,
+      LINE_WIDTH_MULTIPLIER / sizeModifier
+    );
   }
 
   updateCanvasSize() {
