@@ -4,13 +4,13 @@ import { generateRandomPoints } from "../../Algorithms/RandomPoints";
 import { generateEvenlySpacedRandomPoints } from "../../Algorithms/EvenlySpacedRandomPoints";
 import { generatePoissonDiscPoints } from "../../Algorithms/PoissonDisc";
 
-import "./PointDistributionGrid.css";
+import "./PointDistributionMap.css";
 
 const POINT_DENSITY = 0.05;
 const POINT_SIZE_MULTIPLIER = 0.75;
 const LINE_WIDTH_MULTIPLIER = 0.5;
 
-export default class PointDistributionGrid extends Component {
+export default class PointDistributionMap extends Component {
   constructor() {
     super();
     this.state = {};
@@ -28,13 +28,13 @@ export default class PointDistributionGrid extends Component {
     }
   }
 
-  generatePoints(algorithmId, gridWidth, gridHeight) {
-    const pointCount = Math.floor(gridWidth * gridHeight * POINT_DENSITY);
+  generatePoints(algorithmId, mapWidth, mapHeight) {
+    const pointCount = Math.floor(mapWidth * mapHeight * POINT_DENSITY);
     switch (algorithmId) {
       case 1:
         return generateEvenlySpacedRandomPoints(
-          gridWidth,
-          gridHeight,
+          mapWidth,
+          mapHeight,
           pointCount
         );
       case 2:
@@ -48,10 +48,11 @@ export default class PointDistributionGrid extends Component {
         );
       case 0:
       default:
-        return generateRandomPoints(gridWidth, gridHeight, pointCount);
+        return generateRandomPoints(mapWidth, mapHeight, pointCount);
     }
   }
 
+  //draws
   drawPoints(pointList, canvas, pointSize, lineWidth) {
     const sizeModifier = this.getSizeRatio(this.props.mapSize);
     var ctx = canvas.getContext("2d");
@@ -79,14 +80,15 @@ export default class PointDistributionGrid extends Component {
   componentDidUpdate() {
     const canvas = document.getElementById("canvas");
     const sizeModifier = this.getSizeRatio(this.props.mapSize);
-    const gridWidth = Math.floor(canvas.clientWidth * sizeModifier);
-    const gridHeight = Math.floor(canvas.clientHeight * sizeModifier);
+    const mapWidth = Math.floor(canvas.clientWidth * sizeModifier);
+    const mapHeight = Math.floor(canvas.clientHeight * sizeModifier);
 
     const points = this.generatePoints(
       this.props.algorithm,
-      gridWidth,
-      gridHeight
+      mapWidth,
+      mapHeight
     );
+    console.log(points);
     this.drawPoints(
       points,
       canvas,
@@ -120,7 +122,7 @@ export default class PointDistributionGrid extends Component {
   render() {
     return (
       <div className="col-9 main-alg-element">
-        <div className="point-distribution-grid">
+        <div className="point-distribution-map">
           <canvas id="canvas" onClick={() => this.componentDidUpdate()} />
         </div>
       </div>
@@ -128,7 +130,7 @@ export default class PointDistributionGrid extends Component {
   }
 }
 
-PointDistributionGrid.defaultProps = {
+PointDistributionMap.defaultProps = {
   mapSize: 0,
   algorithm: 0,
 };

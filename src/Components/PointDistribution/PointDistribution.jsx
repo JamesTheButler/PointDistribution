@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PointDistributionMenu from "../PointDistributionMenu/PointDistributionMenu.jsx";
-import PointDistributionGrid from "../PointDistributionGrid/PointDistributionGrid.jsx";
+import PointDistributionMap from "../PointDistributionMap/PointDistributionMap.jsx";
 
 export default class PointDistribution extends Component {
   constructor() {
@@ -39,7 +39,7 @@ export default class PointDistribution extends Component {
   render() {
     return (
       <div className={"alg-row row " + this.props.className}>
-        <PointDistributionGrid
+        <PointDistributionMap
           pointNumber={this.state.pointNumber}
           mapSize={this.state.mapSize}
           algorithm={this.state.algorithm}

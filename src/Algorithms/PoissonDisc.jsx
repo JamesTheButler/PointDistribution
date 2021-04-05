@@ -27,9 +27,9 @@ export const generatePoissonDiscPoints = (
   // start point
   const pt = [getRandom(0, canvasWidth), getRandom(0, canvasHeight)];
   console.log(pt);
-  if (points.length == 0)
-    addPoint(points, grid, gridWidth, gridHeight, cellSize, pt);
-  else {
+  if (points.length == 0) {
+    addPoint(points, grid, canvasWidth, canvasHeight, cellSize, pt);
+  } else {
     // grab random point
     const p = points[getRandom(0, points.length - 1)];
     // finding fitting candidate
@@ -52,7 +52,7 @@ export const generatePoissonDiscPoints = (
     }
   }
 
-  console.log(pointCount + " poisson-disc points generated");
+  console.log(points.length + " poisson-disc points generated");
   console.log(points);
   return points;
 };

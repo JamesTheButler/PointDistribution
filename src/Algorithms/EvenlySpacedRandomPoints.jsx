@@ -1,8 +1,8 @@
 import { getRandom } from "./Random";
 
 export const generateEvenlySpacedRandomPoints = (
-  gridWidth,
-  gridHeight,
+  mapWidth,
+  mapHeight,
   pointCount
 ) => {
   var i = 0;
@@ -13,10 +13,10 @@ export const generateEvenlySpacedRandomPoints = (
   } else if (pointCount >= 100) {
     pointCount = Math.ceil(pointCount / 100) * 100;
   }
-  var bestDividers = findBestDivider(pointCount, gridHeight / gridWidth);
+  var bestDividers = findBestDivider(pointCount, mapHeight / mapWidth);
   var x_count = bestDividers[0];
   var y_count = bestDividers[1];
-  var rectSize = [gridWidth / x_count, gridHeight / y_count];
+  var rectSize = [mapWidth / x_count, mapHeight / y_count];
 
   for (let x = 0; x < x_count; x++) {
     for (let y = 0; y < y_count; y++) {
