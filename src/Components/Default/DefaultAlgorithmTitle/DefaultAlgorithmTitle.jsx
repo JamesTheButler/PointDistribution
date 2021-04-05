@@ -11,7 +11,7 @@ export default class DefaultAlgorithmTitle extends Component {
         <Typography id="non-linear-slider" variant="h3" gutterBottom>
           {title}
         </Typography>
-        <Typography id="non-linear-slider" variant="subtitle" gutterBottom>
+        <Typography id="non-linear-slider" variant="subtitle1" gutterBottom>
           {subtitle}
         </Typography>
       </div>

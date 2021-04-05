@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { generateRandomPoints } from "../../Algorithms/RandomPoints";
 import { generateEvenlySpacedRandomPoints } from "../../Algorithms/EvenlySpacedRandomPoints";
+import { generatePoissonDiscPoints } from "../../Algorithms/PoissonDisc";
 
 import "./PointDistributionGrid.css";
 
@@ -36,7 +37,15 @@ export default class PointDistributionGrid extends Component {
           gridHeight,
           pointCount
         );
-      //case 2: return generatePoissonDiscPoints(  gridWidth, gridHeight, pointCount);
+      case 2:
+        const canvas = document.getElementById("canvas");
+        return generatePoissonDiscPoints(
+          canvas.clientWidth,
+          canvas.clientHeight,
+          pointCount,
+          25,
+          30
+        );
       case 0:
       default:
         return generateRandomPoints(gridWidth, gridHeight, pointCount);
@@ -51,8 +60,8 @@ export default class PointDistributionGrid extends Component {
     ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
     for (let i = 0; i < pointList.length; i++) {
       // points to canvas space
-      const x = pointList[i][1] / sizeModifier;
-      const y = pointList[i][0] / sizeModifier;
+      const x = pointList[i][0] / sizeModifier;
+      const y = pointList[i][1] / sizeModifier;
       // ignore points that are too close to the edges
       if (
         x - pointSize - lineWidth > 0 &&

@@ -7,7 +7,12 @@ export const generateEvenlySpacedRandomPoints = (
 ) => {
   var i = 0;
   const points = [];
-
+  // hack...
+  if (pointCount >= 1000) {
+    pointCount = Math.ceil(pointCount / 1000) * 1000;
+  } else if (pointCount >= 100) {
+    pointCount = Math.ceil(pointCount / 100) * 100;
+  }
   var bestDividers = findBestDivider(pointCount, gridHeight / gridWidth);
   var x_count = bestDividers[0];
   var y_count = bestDividers[1];
@@ -16,8 +21,8 @@ export const generateEvenlySpacedRandomPoints = (
   for (let x = 0; x < x_count; x++) {
     for (let y = 0; y < y_count; y++) {
       points.push([
-        getRandom(y * rectSize[1], (y + 1) * rectSize[1]),
         getRandom(x * rectSize[0], (x + 1) * rectSize[0]),
+        getRandom(y * rectSize[1], (y + 1) * rectSize[1]),
       ]);
     }
   }

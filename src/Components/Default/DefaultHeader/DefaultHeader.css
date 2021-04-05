@@ -9,15 +9,15 @@
 }
 
 a.button {
-  padding: 0 15px;
+  padding: 0 15px 0 0;
   text-align: center;
   color: white;
   border-right: 2px #2f528f solid;
 }
 a.button:hover {
   color: white;
-  text-decoration: none;
-  border-right-color: white;
+  text-decoration: underline;
+  /*border-right-color: white;*/
 }
 
 nav.navbar {
@@ -26,4 +26,11 @@ nav.navbar {
 
 nav.navbar .container-fluid {
   padding: 0;
+}
+
+.logo {
+  width: 28px;
+  height: auto;
+  vertical-align: middle;
+  margin: 5px 15px 10px 15px;
 }
