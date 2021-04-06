@@ -6,11 +6,17 @@ import { generatePoissonDiscPoints } from "../../Algorithms/PoissonDisc";
 
 import "./PointDistributionMap.css";
 
+const CANVAS_ID = "canvas";
+
 const POINT_DENSITY = 0.05;
 const POINT_SIZE_MULTIPLIER = 0.75;
 const LINE_WIDTH_MULTIPLIER = 0.5;
+const DRAW_DELAY_MULTIPLIER = 0.25;
+const HIGHLIGHT_COLOR = "#2F528F";
 
 export default class PointDistributionMap extends Component {
+  drawInterval = null;
+
   constructor() {
     super();
     this.state = {};
@@ -38,14 +44,7 @@ export default class PointDistributionMap extends Component {
           pointCount
         );
       case 2:
-        const canvas = document.getElementById("canvas");
-        return generatePoissonDiscPoints(
-          canvas.clientWidth,
-          canvas.clientHeight,
-          pointCount,
-          25,
-          30
-        );
+        return generatePoissonDiscPoints(mapWidth, mapHeight, 50, 30);
       case 0:
       default:
         return generateRandomPoints(mapWidth, mapHeight, pointCount);
@@ -53,12 +52,21 @@ export default class PointDistributionMap extends Component {
   }
 
   //draws
-  drawPoints(pointList, canvas, pointSize, lineWidth) {
+  drawPoints(pointList, canvas, pointSize, lineWidth, delay) {
     const sizeModifier = this.getSizeRatio(this.props.mapSize);
     var ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#2f528f";
+    ctx.strokeStyle = HIGHLIGHT_COLOR;
     ctx.lineWidth = lineWidth;
+
+    // clean up previous render
     ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+    clearInterval(this.drawInterval);
+
+    // start new render
+    var i = 0;
+    /*this.drawInterval = setInterval(function () {
+      i++;
+      if (i == pointList.length - 1) clearInterval(this.drawInterval);*/
     for (let i = 0; i < pointList.length; i++) {
       // points to canvas space
       const x = pointList[i][0] / sizeModifier;
@@ -74,11 +82,11 @@ export default class PointDistributionMap extends Component {
         ctx.arc(x, y, pointSize, 0, Math.PI * 2);
         ctx.stroke();
       }
-    }
+    } /*, delay);*/
   }
 
   componentDidUpdate() {
-    const canvas = document.getElementById("canvas");
+    const canvas = document.getElementById(CANVAS_ID);
     const sizeModifier = this.getSizeRatio(this.props.mapSize);
     const mapWidth = Math.floor(canvas.clientWidth * sizeModifier);
     const mapHeight = Math.floor(canvas.clientHeight * sizeModifier);
@@ -93,13 +101,18 @@ export default class PointDistributionMap extends Component {
       points,
       canvas,
       POINT_SIZE_MULTIPLIER / sizeModifier,
-      LINE_WIDTH_MULTIPLIER / sizeModifier
+      LINE_WIDTH_MULTIPLIER / sizeModifier,
+      DRAW_DELAY_MULTIPLIER / sizeModifier
     );
   }
 
+  componentWillUnmount() {
+    clearInterval(this.drawInterval);
+  }
+
   updateCanvasSize() {
-    const canvas = document.getElementById("canvas");
-    const canvasParent = document.getElementById("canvas").parentElement;
+    const canvas = document.getElementById(CANVAS_ID);
+    const canvasParent = document.getElementById(CANVAS_ID).parentElement;
     canvas.width = canvasParent.offsetWidth - 2;
     canvas.height = canvasParent.offsetHeight - 2;
   }
@@ -123,7 +136,7 @@ export default class PointDistributionMap extends Component {
     return (
       <div className="col-9 main-alg-element">
         <div className="point-distribution-map">
-          <canvas id="canvas" onClick={() => this.componentDidUpdate()} />
+          <canvas id={CANVAS_ID} onClick={() => this.componentDidUpdate()} />
         </div>
       </div>
     );

@@ -1,10 +1,10 @@
 import { getRandom } from "./Random";
 
-export const generateRandomPoints = (gridWidth, gridHeight, pointCount) => {
+export const generateRandomPoints = (mapWidth, mapHeight, pointCount) => {
   const points = [];
   // set points
   for (let i = 0; i < pointCount; i++) {
-    points.push([getRandom(0, gridWidth), getRandom(0, gridHeight)]);
+    points.push([getRandom(0, mapWidth), getRandom(0, mapHeight)]);
   }
   console.log(pointCount + " random points generated");
   return points;

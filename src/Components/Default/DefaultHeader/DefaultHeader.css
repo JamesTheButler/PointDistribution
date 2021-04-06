@@ -1,23 +1,24 @@
+@import "http://tom.ille-web.de/css/constants.css";
+
 .default-header {
-  background-color: #2f528f;
+  background-color: var(--highlight-color);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: left;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--background-color);
 }
 
-a.button {
-  padding: 0 15px 0 0;
+a.portfolio-link {
+  font-weight: 300;
+  padding: 0 15px;
   text-align: center;
-  color: white;
-  border-right: 2px #2f528f solid;
+  color: var(--background-color);
 }
-a.button:hover {
-  color: white;
+a.portfolio-link:hover {
+  color: var(--background-color);
   text-decoration: underline;
-  /*border-right-color: white;*/
 }
 
 nav.navbar {

@@ -1,3 +1,5 @@
+@import "http://tom.ille-web.de/css/constants.css";
+
 .point-distribution-menu {
   text-align: center;
   height: 100%;
@@ -7,7 +9,12 @@
   padding-bottom: 0.5rem;
 }
 
-.styled-hr {
-  background-color: #2f528f;
+hr.settings-menu {
+  background-color: var(--highlight-color);
   width: 75%;
+  margin-top: 0.25rem;
+}
+
+.MuiSlider-root {
+  color: var(--highlight-color) !important;
 }

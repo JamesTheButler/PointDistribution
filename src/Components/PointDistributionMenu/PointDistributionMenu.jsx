@@ -83,13 +83,10 @@ export default class PointDistributionMenu extends Component {
     return (
       <div className="main-alg-element col-3">
         <div className="alg-menu point-distribution-menu">
-          <Typography id="non-linear-slider" variant="h4" gutterBottom>
-            Settings
-          </Typography>
+          <h2 id="settings-heading">Settings</h2>
+          <hr class="settings-menu" />
           <div className="col-12 settings-slider">
-            <Typography id="non-linear-slider" variant="h5" gutterBottom>
-              Map Size
-            </Typography>
+            <h4>Map Size</h4>
             <Slider
               defaultValue={0}
               min={0}
@@ -103,9 +100,7 @@ export default class PointDistributionMenu extends Component {
             />
           </div>
           <div className="col-12 settings-slider">
-            <Typography id="non-linear-slider" variant="h5" gutterBottom>
-              Algorithm
-            </Typography>
+            <h4>Algorithm</h4>
             <Slider
               min={0}
               step={1}
@@ -118,12 +113,9 @@ export default class PointDistributionMenu extends Component {
               }}
             />
           </div>
-          <Typography id="non-linear-slider" variant="h6" gutterBottom>
-            {this.state.algTitle}
-          </Typography>
-          <Typography id="non-linear-slider" variant="body1" gutterBottom>
-            {this.state.algDesc}
-          </Typography>
+          <hr class="settings-menu" />
+          <h6>{this.state.algTitle}</h6>
+          <div>{this.state.algDesc}</div>
         </div>
       </div>
     );
