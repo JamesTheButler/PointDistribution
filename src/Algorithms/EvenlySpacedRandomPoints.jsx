@@ -1,11 +1,6 @@
 import { getRandom } from "./Random";
 
-export const generateEvenlySpacedRandomPoints = (
-  mapWidth,
-  mapHeight,
-  pointCount
-) => {
-  var i = 0;
+export const generateEvenlySpacedRandomPoints = (mapWidth, mapHeight, pointCount) => {
   const points = [];
   // hack...
   if (pointCount >= 1000) {
@@ -20,10 +15,7 @@ export const generateEvenlySpacedRandomPoints = (
 
   for (let x = 0; x < x_count; x++) {
     for (let y = 0; y < y_count; y++) {
-      points.push([
-        getRandom(x * rectSize[0], (x + 1) * rectSize[0]),
-        getRandom(y * rectSize[1], (y + 1) * rectSize[1]),
-      ]);
+      points.push([getRandom(x * rectSize[0], (x + 1) * rectSize[0]), getRandom(y * rectSize[1], (y + 1) * rectSize[1])]);
     }
   }
 
@@ -36,13 +28,9 @@ const findBestDivider = (number, targetRatio) => {
   var i = 0;
   var result = null;
   for (i = 1; i <= number; i++) {
-    if (number % i == 0) {
+    if (number % i === 0) {
       var divider = number / i;
-      if (
-        result == null ||
-        Math.abs(i / divider - targetRatio) <
-          Math.abs(result[0] / result[1] - targetRatio)
-      ) {
+      if (result == null || Math.abs(i / divider - targetRatio) < Math.abs(result[0] / result[1] - targetRatio)) {
         result = [i, divider];
       } else {
         break;

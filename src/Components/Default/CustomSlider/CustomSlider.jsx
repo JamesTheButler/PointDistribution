@@ -11,16 +11,12 @@ export default class CustomSlider extends Component {
     super(props);
     this.state = {
       id: this.props.id,
-      value: this.props.defaultValue
-        ? this.props.defaultValue
-        : Math.floor((parseInt(this.props.min) + parseInt(this.props.max)) / 2),
+      value: this.props.defaultValue ? this.props.defaultValue : Math.floor((parseInt(this.props.min) + parseInt(this.props.max)) / 2),
     };
   }
 
   updateValueLabel(val) {
-    document.getElementById(
-      this.state.id + VALUE_FIELD_ID_SUFFIX
-    ).innerHTML = val;
+    document.getElementById(this.state.id + VALUE_FIELD_ID_SUFFIX).innerHTML = val;
   }
 
   componentDidMount() {
@@ -45,10 +41,7 @@ export default class CustomSlider extends Component {
     const { caption, id, min, defaultValue, max, step } = this.props;
     return (
       <div id={this.props.id} className="d-flex">
-        <div
-          id={this.props.id + CAPTION_ID_SUFFIX}
-          className="custom-slider col-3"
-        >
+        <div id={this.props.id + CAPTION_ID_SUFFIX} className="custom-slider col-3">
           {caption}
         </div>
         <input

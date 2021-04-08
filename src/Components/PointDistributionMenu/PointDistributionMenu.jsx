@@ -84,7 +84,7 @@ export default class PointDistributionMenu extends Component {
       <div className="main-alg-element col-3">
         <div className="alg-menu point-distribution-menu">
           <h2 id="settings-heading">Settings</h2>
-          <hr class="settings-menu" />
+          <hr className="settings-menu" />
           <div className="col-12 settings-slider">
             <h4>Map Size</h4>
             <Slider
@@ -94,9 +94,7 @@ export default class PointDistributionMenu extends Component {
               max={2}
               marks={sizeMarks}
               className="col-8"
-              onChange={(e, value) =>
-                this.onSettingsChanged({ mapSize: value })
-              }
+              onChange={(e, value) => this.onSettingsChanged({ mapSize: value })}
             />
           </div>
           <div className="col-12 settings-slider">
@@ -113,7 +111,7 @@ export default class PointDistributionMenu extends Component {
               }}
             />
           </div>
-          <hr class="settings-menu" />
+          <hr className="settings-menu" />
           <h6>{this.state.algTitle}</h6>
           <div>{this.state.algDesc}</div>
         </div>
