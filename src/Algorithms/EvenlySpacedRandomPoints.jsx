@@ -1,5 +1,6 @@
 import { getRandom } from "./Random";
 
+//TODO: REMOVE point count, ADD cell size -> make grid of quadratic cell size; fit it onto the cavas; generate in each cell; check samples of last cell or last row if they are still on canvas
 export const generateEvenlySpacedRandomPoints = (mapWidth, mapHeight, pointCount) => {
   const points = [];
   // hack...

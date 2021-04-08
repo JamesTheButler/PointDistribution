@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-//import CustomSlider from "../Default/CustomSlider/CustomSlider";
 import Slider from "@material-ui/core/Slider";
-import Typography from "@material-ui/core/Typography";
 
 import "./PointDistributionMenu.css";
 

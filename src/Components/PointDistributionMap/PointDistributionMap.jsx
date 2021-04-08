@@ -64,26 +64,27 @@ export default class PointDistributionMap extends Component {
     var thisClass = this;
     console.log(this);
     console.log("drawinterval 1 " + this.drawInterval);
-    var interval = (this.drawInterval = setInterval(function () {
-      i++;
-      if (i >= pointList.length - 1) {
+    this.drawInterval = setInterval(function () {
+      if (i > pointList.length - 1) {
         clearInterval(thisClass.drawInterval);
+      } else {
+        // points to canvas space
+        const x = pointList[i][0] / sizeModifier;
+        const y = pointList[i][1] / sizeModifier;
+        // ignore points that are too close to the edges
+        if (
+          x - pointSize - lineWidth > 0 &&
+          x + pointSize + lineWidth < canvas.clientWidth &&
+          y - pointSize - lineWidth > 0 &&
+          y + pointSize + lineWidth < canvas.clientHeight
+        ) {
+          ctx.beginPath();
+          ctx.arc(x, y, pointSize, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        i++;
       }
-      // points to canvas space
-      const x = pointList[i][0] / sizeModifier;
-      const y = pointList[i][1] / sizeModifier;
-      // ignore points that are too close to the edges
-      if (
-        x - pointSize - lineWidth > 0 &&
-        x + pointSize + lineWidth < canvas.clientWidth &&
-        y - pointSize - lineWidth > 0 &&
-        y + pointSize + lineWidth < canvas.clientHeight
-      ) {
-        ctx.beginPath();
-        ctx.arc(x, y, pointSize, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-    }, delay));
+    }, delay);
   }
 
   //draws
