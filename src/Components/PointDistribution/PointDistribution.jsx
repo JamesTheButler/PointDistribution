@@ -1,35 +1,44 @@
 import React, { Component } from "react";
-import PointDistributionMenu from "../PointDistributionMenu/PointDistributionMenu.jsx";
-import PointDistributionMap from "../PointDistributionMap/PointDistributionMap.jsx";
+import PointDistributionMenu from "./PointDistributionMenu/PointDistributionMenu.jsx";
+import PointDistributionMap from "./PointDistributionMap/PointDistributionMap.jsx";
 
 export default class PointDistribution extends Component {
   constructor() {
     super();
     this.state = {
-      pointNumber: 0,
       mapSize: 0,
-      algorithm: "default",
+      algorithm: 0,
+      isAnimate: false,
     };
   }
 
-  onSettingsChanged(newSettings) {
-    if (newSettings.pointNumber != null && newSettings.pointNumber !== this.state.pointNumber)
-      this.setState({ pointNumber: newSettings.pointNumber });
-
-    if (newSettings.mapSize != null && newSettings.mapSize !== this.state.mapSize) this.setState({ mapSize: newSettings.mapSize });
-
-    if (newSettings.algorithm != null && newSettings.algorithm !== this.state.algorithm) this.setState({ algorithm: newSettings.algorithm });
+  onMapSizeChanged(newMapSize) {
+    if (newMapSize != this.state.mapSize) {
+      this.setState({ mapSize: newMapSize });
+    }
   }
 
-  updateState(e) {
-    this.setState({ val: e.target.value });
+  onAlgorithmChanged(newAlgotihm) {
+    if (newAlgotihm != this.state.algorithm) {
+      this.setState({ algorithm: newAlgotihm });
+    }
+  }
+
+  onIsAnimateChanged(newIsAnimate) {
+    if (newIsAnimate != this.state.isAnimate) {
+      this.setState({ isAnimate: newIsAnimate });
+    }
   }
 
   render() {
     return (
       <div className={"alg-row row " + this.props.className}>
-        <PointDistributionMap pointNumber={this.state.pointNumber} mapSize={this.state.mapSize} algorithm={this.state.algorithm} />
-        <PointDistributionMenu onSettingsChanged={(newSettings) => this.onSettingsChanged(newSettings)} />
+        <PointDistributionMap mapSize={this.state.mapSize} algorithm={this.state.algorithm} isAnimate={this.state.isAnimate} />
+        <PointDistributionMenu
+          onMapSizeChanged={(newMapSize) => this.onMapSizeChanged(newMapSize)}
+          onAlgorithmChanged={(newAlgotihm) => this.onAlgorithmChanged(newAlgotihm)}
+          onIsAnimateChanged={(newIsAnimate) => this.onIsAnimateChanged(newIsAnimate)}
+        />
       </div>
     );
   }

@@ -9,32 +9,12 @@ export const generatePoissonDiscPoints = (mapWidth, mapHeight, r, k) => {
   const gridWidth = Math.ceil(mapWidth / cellSize);
   const gridHeight = Math.ceil(mapHeight / cellSize);
   const grid = Array.from(Array(gridWidth), () => new Array(gridHeight));
-  console.log(
-    "mapwidth " +
-      mapWidth +
-      "\n mapHeight " +
-      mapHeight +
-      "\ngridwidth " +
-      gridWidth +
-      "\n grid height " +
-      gridHeight +
-      "\n cellsize" +
-      cellSize +
-      "\n readius " +
-      r
-  );
-  console.log(grid);
 
-  // start point
-  //if (points.length === 0) {
   addPoint(points, activePointIds, grid, cellSize, [getRandom(0, mapWidth), getRandom(0, mapHeight)]);
-  //}
-  //TODO: DO WHILE QUEUE IS NOT EMPTY
-  var COUNT = 0;
+
   while (activePointIds.length > 0) {
     // grab random point
 
-    //for (var i = 0; i < 10; i++) {
     const idid = Math.floor(getRandom(0, activePointIds.length - 1)); // great name dude
     const pointId = activePointIds[idid];
     const point = points[pointId];
@@ -65,11 +45,6 @@ const addPoint = (pointList, activePointList, grid, cellSize, point) => {
   activePointList.push(pointList.length - 1);
   grid[Math.floor(point[0] / cellSize)][Math.floor(point[1] / cellSize)] = point;
 };
-/*activePointList.push(point);
-  const gridIdX = Math.floor(point[0] / cellSize);
-  const gridIdY = Math.floor(point[1] / cellSize);
-  grid[gridIdX][gridIdY] = point;
-  console.log("point " + point + " at grid pos " + gridIdX + "," + gridIdY);*/
 
 // Determines whether a given point is within range of an occupied grid cell.
 const isNearOtherPoints = (grid, cellSize, point, r) => {

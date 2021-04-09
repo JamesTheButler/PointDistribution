@@ -1,42 +1,19 @@
 import { getRandom } from "./Random";
 
-//TODO: REMOVE point count, ADD cell size -> make grid of quadratic cell size; fit it onto the cavas; generate in each cell; check samples of last cell or last row if they are still on canvas
-export const generateEvenlySpacedRandomPoints = (mapWidth, mapHeight, pointCount) => {
+export const generateEvenlySpacedRandomPoints = (mapWidth, mapHeight, cellSize) => {
   const points = [];
-  // hack...
-  if (pointCount >= 1000) {
-    pointCount = Math.ceil(pointCount / 1000) * 1000;
-  } else if (pointCount >= 100) {
-    pointCount = Math.ceil(pointCount / 100) * 100;
-  }
-  var bestDividers = findBestDivider(pointCount, mapHeight / mapWidth);
-  var x_count = bestDividers[0];
-  var y_count = bestDividers[1];
-  var rectSize = [mapWidth / x_count, mapHeight / y_count];
 
-  for (let x = 0; x < x_count; x++) {
-    for (let y = 0; y < y_count; y++) {
-      points.push([getRandom(x * rectSize[0], (x + 1) * rectSize[0]), getRandom(y * rectSize[1], (y + 1) * rectSize[1])]);
+  const gridWidth = Math.ceil(mapWidth / cellSize);
+  const gridHeight = Math.ceil(mapHeight / cellSize);
+
+  for (let x = 0; x < gridWidth; x++) {
+    for (let y = 0; y < gridHeight; y++) {
+      const newPoint = [getRandom(x * cellSize, (x + 1) * cellSize), getRandom(y * cellSize, (y + 1) * cellSize)];
+      if ((x == gridWidth - 1 || y == gridHeight - 1) && (newPoint[0] > mapWidth || newPoint[1] > mapHeight)) continue;
+      points.push(newPoint);
     }
   }
 
-  console.log(pointCount + " points generated with even spacing");
+  console.log(points.length + " points generated with even spacing");
   return points;
-};
-
-// finds the pair of dividers of a number whos ratio is closest to the given ratio
-const findBestDivider = (number, targetRatio) => {
-  var i = 0;
-  var result = null;
-  for (i = 1; i <= number; i++) {
-    if (number % i === 0) {
-      var divider = number / i;
-      if (result == null || Math.abs(i / divider - targetRatio) < Math.abs(result[0] / result[1] - targetRatio)) {
-        result = [i, divider];
-      } else {
-        break;
-      }
-    }
-  }
-  return result;
 };

@@ -18,3 +18,11 @@ hr.settings-menu {
 .MuiSlider-root {
   color: var(--highlight-color) !important;
 }
+
+.MuiSwitch-colorSecondary.Mui-checked {
+  color: var(--highlight-color) !important;
+}
+
+.MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+  background-color: var(--highlight-color) !important;
+}
