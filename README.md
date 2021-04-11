@@ -2,6 +2,8 @@
 
 *An implementation of different algorithms for scattering points in 2D.*
 
+<a href="http://tom.ille-web.de/PointDistribution/index.html"> To the Project </a>
+
 ## Random
 The points are randomly scattered across the image. The scatter is very uneven. There are large clumps of points and areas of very low point density.
 
