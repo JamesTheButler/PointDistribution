@@ -29,7 +29,7 @@ export default class PointDistributionMenu extends Component {
       {
         title: "Poisson-Disc",
         link: "https://www.jasondavies.com/poisson-disc/",
-        link_title: "Based on Jason Davies implementation",
+        link_title: "Based on Jason Davies' implementation",
         description:
           "Poisson-Disc ensures a minimal distance between each point. Whenever a new point is considered, it is checked against its neighbours to ensure the minimal distance." +
           " To reduce the computational cost a grid is used in the background. New points then have to only be checked" +
@@ -62,7 +62,13 @@ export default class PointDistributionMenu extends Component {
 
     var algLink;
     if (this.state.link && this.state.link_title) {
-      algLink = <a href={this.state.link}>{this.state.link_title}</a>;
+      algLink = (
+        <div className="algorithm-link">
+          <a href={this.state.link} target="_blank" rel="noreferrer">
+            {this.state.link_title}
+          </a>
+        </div>
+      );
     }
 
     return (

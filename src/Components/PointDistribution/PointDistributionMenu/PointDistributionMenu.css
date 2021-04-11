@@ -26,3 +26,7 @@ hr.settings-menu {
 .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
   background-color: var(--highlight-color) !important;
 }
+
+.algorithm-link {
+  margin-bottom: 0.5rem;
+}
