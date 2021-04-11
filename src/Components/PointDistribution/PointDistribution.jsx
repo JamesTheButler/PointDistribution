@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PointDistributionMenu from "./PointDistributionMenu/PointDistributionMenu.jsx";
 import PointDistributionMap from "./PointDistributionMap/PointDistributionMap.jsx";
+import "./PointDistribution.css";
 
 export default class PointDistribution extends Component {
   constructor() {
@@ -32,7 +33,7 @@ export default class PointDistribution extends Component {
 
   render() {
     return (
-      <div className={"alg-row row " + this.props.className}>
+      <div className={"alg-body"}>
         <PointDistributionMap mapSize={this.state.mapSize} algorithm={this.state.algorithm} isAnimate={this.state.isAnimate} />
         <PointDistributionMenu
           onMapSizeChanged={(newMapSize) => this.onMapSizeChanged(newMapSize)}

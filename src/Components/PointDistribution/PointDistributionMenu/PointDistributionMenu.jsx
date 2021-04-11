@@ -72,41 +72,41 @@ export default class PointDistributionMenu extends Component {
     }
 
     return (
-      <div className="main-alg-element col-3">
-        <div className="alg-menu point-distribution-menu">
-          <h2 id="settings-heading">Settings</h2>
-          <hr className="settings-menu" />
-          <div className="col-12 settings-slider">
-            <h4>Map Size</h4>
-            <Slider
-              defaultValue={0}
-              min={0}
-              step={1}
-              max={2}
-              marks={sizeMarks}
-              className="col-8"
-              onChange={(e, value) => this.props.onMapSizeChanged(value)}
-            />
-          </div>
-          <div className="col-12 settings-slider">
-            <h4>Algorithm</h4>
-            <Slider
-              min={0}
-              step={1}
-              max={2}
-              marks={algorithmMarks}
-              className="col-8"
-              onChange={(e, value) => {
-                this.props.onAlgorithmChanged(value);
-                this.updateAlgorithmDescription(value);
-              }}
-            />
-          </div>
-          <div className="col-12 ">
-            <h4>Animate</h4>
-            <Switch onChange={(e, checked) => this.props.onIsAnimateChanged(checked)} />
-          </div>
-          <hr className="settings-menu" />
+      <div className="alg-menu">
+        <h2 id="settings-heading">Settings</h2>
+        <hr className="settings-menu" />
+        <div className="settings-slider">
+          <h4>Map Size</h4>
+          <Slider
+            defaultValue={0}
+            min={0}
+            step={1}
+            max={2}
+            marks={sizeMarks}
+            className="col-8"
+            onChange={(e, value) => this.props.onMapSizeChanged(value)}
+          />
+        </div>
+        <div className="settings-slider">
+          <h4>Algorithm</h4>
+          <Slider
+            min={0}
+            step={1}
+            max={2}
+            marks={algorithmMarks}
+            className="col-8"
+            onChange={(e, value) => {
+              this.props.onAlgorithmChanged(value);
+              this.updateAlgorithmDescription(value);
+            }}
+          />
+        </div>
+        <div className="">
+          <h4>Animate</h4>
+          <Switch onChange={(e, checked) => this.props.onIsAnimateChanged(checked)} />
+        </div>
+        <hr className="settings-menu" />
+        <div className="alg-description">
           <h6>{this.state.algTitle}</h6>
           {algLink}
           <div>{this.state.algDesc}</div>

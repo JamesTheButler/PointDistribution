@@ -1,8 +1,10 @@
 @import "http://tom.ille-web.de/css/constants.css";
 
-.point-distribution-menu {
-  text-align: center;
+.main-alg-element {
+  width: 75%;
+  flex: 0 0 75%;
   height: 100%;
+  padding: 15px;
 }
 
 .settings-slider {
@@ -29,4 +31,14 @@ hr.settings-menu {
 
 .algorithm-link {
   margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 1300px) {
+  .main-alg-element {
+    width: 100%;
+    flex: 0 0 100%;
+    order: 2;
+    height: 100vh;
+    padding-bottom: 3rem;
+  }
 }

@@ -127,8 +127,8 @@ export default class PointDistributionMap extends Component {
   updateCanvasSize() {
     const canvas = document.getElementById(CANVAS_ID);
     const canvasParent = document.getElementById(CANVAS_ID).parentElement;
-    canvas.width = canvasParent.offsetWidth - 2;
-    canvas.height = canvasParent.offsetHeight - 2;
+    canvas.width = canvasParent.offsetWidth; //padding + border
+    canvas.height = canvasParent.offsetHeight; //padding + border
   }
 
   onWindowResize() {
@@ -149,7 +149,7 @@ export default class PointDistributionMap extends Component {
 
   render() {
     return (
-      <div className="col-9 main-alg-element">
+      <div className="main-alg-element">
         <div className="point-distribution-map">
           <canvas id={CANVAS_ID} onClick={() => this.componentDidUpdate()} />
         </div>

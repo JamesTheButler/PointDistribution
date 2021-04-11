@@ -11,7 +11,7 @@ export default function App() {
     <div className="App">
       <DefaultHeader />
       <DefaultAlgorithmTitle title="Algorithms for scattering 2D Points" />
-      <PointDistribution className="pb-3" />
+      <PointDistribution />
       <div className="container-fluid"></div>
     </div>
   );

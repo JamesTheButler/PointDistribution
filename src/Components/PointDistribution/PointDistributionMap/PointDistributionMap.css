@@ -1,8 +1,22 @@
 .point-distribution-map {
   height: 100%;
 }
+
 #canvas {
   display: flex;
   flex: 1 0.5;
   cursor: crosshair;
+}
+
+.alg-menu {
+  width: 25%;
+  flex: 0 0 25%;
+}
+
+@media only screen and (max-width: 1300px) {
+  .alg-menu {
+    width: 100%;
+    flex: 0 0 100%;
+    order: 1;
+  }
 }
