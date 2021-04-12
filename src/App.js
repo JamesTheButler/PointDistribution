@@ -3,7 +3,6 @@ import DefaultAlgorithmTitle from "./Components/Default/DefaultAlgorithmTitle/De
 import PointDistribution from "./Components/PointDistribution/PointDistribution.jsx";
 // css
 import "./App.css";
-import "./css/Algorithms.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function App() {
