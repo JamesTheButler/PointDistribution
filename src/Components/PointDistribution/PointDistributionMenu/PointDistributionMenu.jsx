@@ -77,15 +77,7 @@ export default class PointDistributionMenu extends Component {
         <hr className="settings-menu" />
         <div className="settings-slider">
           <h4>Map Size</h4>
-          <Slider
-            defaultValue={0}
-            min={0}
-            step={1}
-            max={2}
-            marks={sizeMarks}
-            className="col-8"
-            onChange={(e, value) => this.props.onMapSizeChanged(value)}
-          />
+          <Slider defaultValue={0} min={0} step={1} max={2} marks={sizeMarks} onChange={(e, value) => this.props.onMapSizeChanged(value)} />
         </div>
         <div className="settings-slider">
           <h4>Algorithm</h4>
@@ -94,7 +86,6 @@ export default class PointDistributionMenu extends Component {
             step={1}
             max={2}
             marks={algorithmMarks}
-            className="col-8"
             onChange={(e, value) => {
               this.props.onAlgorithmChanged(value);
               this.updateAlgorithmDescription(value);
