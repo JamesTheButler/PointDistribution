@@ -48,6 +48,7 @@ export default class PointDistributionMenu extends Component {
   }
 
   render() {
+    const { link, link_title, algTitle, algDesc } = this.state;
     const algorithmMarks = [
       { value: 0, label: "Random" },
       { value: 1, label: "Random Grid" },
@@ -61,11 +62,11 @@ export default class PointDistributionMenu extends Component {
     ];
 
     var algLink;
-    if (this.state.link && this.state.link_title) {
+    if (link && link_title) {
       algLink = (
         <div className="algorithm-link">
-          <a href={this.state.link} target="_blank" rel="noreferrer">
-            {this.state.link_title}
+          <a href={link} target="_blank" rel="noreferrer">
+            {link_title}
           </a>
         </div>
       );
@@ -98,9 +99,9 @@ export default class PointDistributionMenu extends Component {
         </div>
         <hr className="settings-menu" />
         <div className="alg-description">
-          <h6>{this.state.algTitle}</h6>
+          <h6>{algTitle}</h6>
           {algLink}
-          <div>{this.state.algDesc}</div>
+          <div>{algDesc}</div>
         </div>
       </div>
     );
